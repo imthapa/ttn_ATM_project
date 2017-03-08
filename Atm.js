@@ -70,6 +70,10 @@ function	Atm(){
 						withdrawAmount -= noteCount * denomination[i];
 						count[i] =  count[i] - noteCount;
 					}
+					else {
+						withdrawAmount-=count[i]*denomination[i];
+						count[i]=0;
+					}
 				}
 			}
 		}
