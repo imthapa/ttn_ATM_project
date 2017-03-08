@@ -6,6 +6,7 @@ function	Atm(){
 	this.fiveHundred = 0;
 	this.oneHundred = 0;
 	this.currentAmount = 0;
+	this.fifty = 0;
 
 	this.add = function(transaction)
 	{
@@ -16,6 +17,8 @@ function	Atm(){
 		this.fiveHundred = this.fiveHundred + transaction.fiveHundred;
 		if(transaction.oneHundred > 0)
 		this.oneHundred = this.oneHundred + transaction.oneHundred;
+		if(transaction.fifty > 0)
+		this.fifty = this.fifty + transaction.fifty;
 
 	}
 
@@ -23,22 +26,22 @@ function	Atm(){
 	this.updates = function(){
 		var ww=document.getElementById("usr").value;
 		var ss=("<tr bgcolor='red' style='color: white'><td>"+ (i+1) +"</td><td>" + ww +"</td><td>"+ this.twoK+"</td><td>"+
-		this.fiveHundred+"</td><td>"+ this.oneHundred+"</td><td>"+ this.currentAmount+"</td></tr>");
+		this.fiveHundred+"</td><td>"+ this.oneHundred+"</td><td>"+ this.fifty+"</td><td>"+ this.currentAmount+"</td></tr>");
 
 		$('#tab_logic').append(ss);
 		i++;
 	}
 
 	this.disp = function(){
-		this.currentAmount = this.twoK*(2000)+this.fiveHundred*(500)+this.oneHundred*(100);
+		this.currentAmount = this.twoK*(2000)+this.fiveHundred*(500)+this.oneHundred*(100)+this.fifty*(50);
 		document.getElementById("curAmt").innerHTML="₹"+this.currentAmount;
 	}
 
 	this.withdraw = function(withdrawAmount)
 	{
 		var withdrawAmount2 = withdrawAmount;
-		var count = [this.twoK, this.fiveHundred,this.oneHundred];
-		var denomination = [2000,500,100];
+		var count = [this.twoK, this.fiveHundred,this.oneHundred,this.fifty];
+		var denomination = [2000,500,100,50];
 		if(withdrawAmount == 0 || withdrawAmount % 100 != 0)
 		{
 			document.getElementById("msg").innerHTML="Please enter the amount which is multiple of 100";
@@ -55,7 +58,7 @@ function	Atm(){
 			return;
 		}
 
-		for (var i = 0; i < 3; i++)
+		for (var i = 0; i < 4; i++)
 		{
 			console.log(withdrawAmount);
 			if (denomination[i] <= withdrawAmount)
@@ -91,6 +94,7 @@ function	Atm(){
 			this.twoK = count[0];
 			this.fiveHundred = count[1];
 			this.oneHundred = count[2];
+      this.fifty = count[3];
 			atmObj.updates();
 			document.getElementById("msg").innerHTML="₹" + withdrawAmount2 + " withdrawn successfully from ATM";
 			$("#msg").css("background-color","green");
@@ -106,10 +110,11 @@ var atmObj = new Atm();
 
 
 
-function Transaction(two,five,one) {
+function Transaction(two,five,one,fifty) {
 	this.twoK = two;
 	this.fiveHundred = five;
 	this.oneHundred = one;
+	this.fifty=fifty;
 	this.amount = 0;
 
 	this.computeTotalAmt = function(){
@@ -120,7 +125,7 @@ function Transaction(two,five,one) {
 	var i = 0;
 	this.update = function(){
 		var ss=("<tr bgcolor='green' style='color: white'><td>"+ (i+1) +"</td><td>" + atmObj.currentAmount +"</td><td>"+ this.twoK+"</td><td>"
-		+ this.fiveHundred+"</td><td>"+ this.oneHundred+"</td><td>"+ atmObj.currentAmount+"</td></tr>");
+		+ this.fiveHundred+"</td><td>"+ this.oneHundred+"</td><td>"+ this.fifty+"</td><td>"+ atmObj.currentAmount+"</td></tr>");
 
 		$('#tab_logic').append(ss);
 		i++;
@@ -175,17 +180,29 @@ function transact() {
 
         exit;
     }
+		var fifty = document.getElementById("fifty").value;
+	    if(fifty == '')    //akhil
+	        fifty = 0;
+	    else if(parseInt(fifty)>0) {
+	        fifty = parseInt(fifty);
+	    }
+	    else{
+	        document.getElementById("msg").innerHTML="Denomination can't be negative";
+	        $("#msg").css("background-color","red");
+	        exit;
+	    }
+
 
 
 	//  console.log(obj);
-	if(one==0 && two==0 && five==0)//ankit
+	if(one==0 && two==0 && five==0 && fifty == 0)//ankit
 	{
 	  alert("All cant be zero");
 		exit;
 	}
 	$('#money').attr('disabled', true);		//Validation added by Jitender
 	$('#max').attr('disabled', true);
-	var obj = new Transaction(two,five,one);
+	var obj = new Transaction(two,five,one,fifty);
 obj.amount = obj.computeTotalAmt();
 	atmObj.add(obj)
 	atmObj.disp();
