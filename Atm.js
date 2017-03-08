@@ -46,7 +46,8 @@ function	Atm(){
 		{
 			document.getElementById("msg").innerHTML="Please enter the amount which is multiple of 100 & 50";
 			$("#msg").css("background-color","red");
-
+            logger =new Date() +">>>>>> user tried to withdraw invalid amount i.e. "+withdrawAmount2 + "from atm";
+            log(logger);
 			return;
 		}
 
@@ -54,7 +55,8 @@ function	Atm(){
 		{
 			document.getElementById("msg").innerHTML="ATM doesn't have enough money";
 			$("#msg").css("background-color","red");
-
+            logger =new Date() +">>>>>> Atm did not have sufficient amount against user transaction "+withdrawAmount2;
+            log(logger);
 			return;
 		}
 
@@ -86,7 +88,8 @@ function	Atm(){
 			// alert("Error");
 			document.getElementById("msg").innerHTML="the amount you entered isn't availabe in currency"
 			$("#msg").css("background-color","red");
-
+            logger =new Date() +">>>>>> Atm did not have sufficient amount against user transaction "+withdrawAmount2;
+            log(logger)
 		}
 		else
 		{
@@ -98,7 +101,8 @@ function	Atm(){
 			atmObj.updates();
 			document.getElementById("msg").innerHTML="₹" + withdrawAmount2 + " withdrawn successfully from ATM";
 			$("#msg").css("background-color","green");
-
+            logger =new Date() +">>>>>> "+ document.getElementById('userName').value +" >>>>>>>>> withdrew "+withdrawAmount2+ " successfully from ATM";
+            log(logger);
 		}
 		console.log("hello",this.twoK,this.fiveHundred,this.oneHundred);
 	}
@@ -134,12 +138,14 @@ function Transaction(two,five,one,fifty) {
 }
 
 var max = 0;
+var logger =""
 function transact() {
 	max = document.getElementById("max").value;
 	if(max == '' || parseInt(max) < 50){
 		document.getElementById("msg").innerHTML="please enter max. amount user can get(should be greater than or equal to 100)";
 		$("#msg").css("background-color","red");
-
+        logger =new Date() +">>>>>> an error occured >>>>>>>>> bank tried to add "+max+ "amount which was less than least denomination i.e.100";
+        log(logger);
 		exit;
 	}
 	document.getElementById("msg").innerHTML="";
@@ -155,6 +161,8 @@ function transact() {
     else {
         document.getElementById("msg").innerHTML="Denomination can't be negative";
         $("#msg").css("background-color","red");
+        logger =new Date() +">>>>>> an error occured >>>>>>>>> bank tried to add "+two+ "notes of ₹2000";
+        log(logger);
         exit;
     }
 	var five = document.getElementById("five-hundred").value;
@@ -166,6 +174,8 @@ function transact() {
     else {
         document.getElementById("msg").innerHTML="Denomination can't be negative";
         $("#msg").css("background-color","red");
+        logger =new Date() +">>>>>> an error occured >>>>>>>>> bank tried to add "+five+ "notes of ₹500";
+        log(logger);
         exit;
     }
 	var one = document.getElementById("one-hundred").value;
@@ -177,6 +187,8 @@ function transact() {
     else{
         document.getElementById("msg").innerHTML="Denomination can't be negative";
         $("#msg").css("background-color","red");
+        logger =new Date() +">>>>>> an error occured >>>>>>>>> bank tried to add "+one+ "notes of ₹100";
+        log(logger)
         exit;
     }
 		var fifty = document.getElementById("fifty").value;
@@ -188,6 +200,8 @@ function transact() {
 	    else {
 	        document.getElementById("msg").innerHTML="Denomination can't be negative";
 	        $("#msg").css("background-color","red");
+            logger =new Date() +">>>>>> an error occured >>>>>>>>> bank tried to add "+fifty+ "notes of ₹50";
+            log(logger)
 	        exit;
 	    }
 
@@ -196,6 +210,8 @@ function transact() {
 	if(one == 0 && two == 0 && five == 0 && fifty == 0){
 	  document.getElementById("msg").innerHTML="atleast one note should be entered";
 		$("#msg").css("background-color","red");
+        logger =new Date() +">>>>>> an error occured >>>>>>>>> bank tried to add 0 notes of ₹2000, ₹500, ₹100, ₹50";
+        log(logger)
 		exit;
 	}
 
@@ -209,22 +225,40 @@ function transact() {
 	obj.update();
 	document.getElementById("msg").innerHTML="₹" + obj.amount + " added successfully to ATM";
 	$("#msg").css("background-color","green");
+    logger =new Date() +">>>>>> bank has successfully added ₹" + obj.amount + ".Now the amount left is "+ atmObj.currentAmount;
+    log(logger);
 
 }
 
 var withdrawalAmt = 0;
+var uname;
 function withdrawMoney(){
 	withdrawalAmt = document.getElementById("usr").value;
+    uname =document.getElementById('userName').value;
+	if(uname== '')
+	{
+        document.getElementById("msg").innerHTML = "Name can't be left blank";
+        $("#msg").css("background-color", "red");
+        logger =new Date() +">>>>>> user tried to withdraw  amount without giving his name ";
+        log(logger);
+        exit;
+	}
 	if(withdrawalAmt==''){
         withdrawalAmt=0;
         document.getElementById("msg").innerHTML = "Cant be left blank";
-        $("#msg").css("background-color", "red");	}
+        $("#msg").css("background-color", "red");
+        logger =new Date() +">>>>>> user tried to withdraw invalid amount i.e. "+withdrawalAmt + "from atm";
+        log(logger);
+	}
 
 	else {
 			withdrawalAmt=parseInt(withdrawalAmt);
         if (withdrawalAmt <= 0) {
             document.getElementById("msg").innerHTML = "Please enter valid amount";
             $("#msg").css("background-color", "red");
+            logger =new Date() +">>>>>>"+ document.getElementById('userName').value +">>>>>>>>> tried to withdraw "+withdrawalAmt+ " from ATM which was invalid";
+            //}
+            log(logger);
 
         }
         else if (max >= withdrawalAmt) {
@@ -237,12 +271,28 @@ function withdrawMoney(){
             // 	document.getElementById("msg").innerHTML="ATM doesn't have cash";
             // else {
             document.getElementById("msg").innerHTML = "Withdrawl Amount is greater than limit defined";
+            logger =new Date() +">>>>>> "+ document.getElementById('userName').value +" >>>>>>>>> tried to withdraw "+withdrawalAmt+ " from ATM which was greater defined limit";
+            //}
+            log(logger);
             //}
         }
     }
+
 }
 //submit and onclick() together not working
 //so did this
 //but then error came in line 124 that null.value can't
 // var btn = $('#money');
 // btn.on('click', transact());
+var abc;
+function log(logg){
+	abc+=logg+"<br>";
+   $('#thisis').val(logg);
+    console.log(logg);
+}
+
+function showlogs() {
+	$('#akhil').append(abc);
+	console.log("aaaaaaaaadfghjcvjbknlj;")
+}
+

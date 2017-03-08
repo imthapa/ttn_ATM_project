@@ -4,10 +4,12 @@
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="style.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
   <script src="Atm.js"></script>
 </head>
 <body>
@@ -59,7 +61,7 @@
           </table>
         </div>
       </div>
-      <form class="form-group form-inline">
+      <form class="form-group form-inline" action="logs.html" method="post">
           <label class="text-center"> Current Amount is : <label id = "curAmt"> ₹0 </label></label><br>
           <label class="text-center"> Max. limit </label>
           <input type="number" class="form-control" id = "max" name = "max" min = "0" placeholder="Default is 0" required/> <br>
@@ -93,7 +95,7 @@
                 <td><input type="number" id = "fifty" min = "0" style="width:100%" class="form-control"/></td>
               </tr>
             </table>
-          <a href="logs.html">  <input type="button" id="logger" value = "View Log" class="btn btn-primary pull-left"/></a>
+            <input type="submit" id="logger" value = "View Log" class="btn btn-primary pull-left"/>
             <input type="button" id="money" value = "Add Money" class="btn btn-primary pull-right"onclick="transact()"/>
           </div>
       </form>
@@ -101,7 +103,7 @@
     <div class="withdrawal col-sm-5 vertical" >
       <h3 class="text-center">Customer View</h3>
       <div class="form-group">
-        <label for="name">Enter your name:</label>
+        <label >Enter your name:</label>
         <input type="text" class="form-control" id="userName" placeholder="enter your name"><br>
         <label for="usr">Enter Amount:</label>
         <input type="number" class="form-control" min = "0" id="usr"><br>
