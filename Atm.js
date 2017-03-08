@@ -44,7 +44,7 @@ function	Atm(){
 		var denomination = [2000,500,100,50];
 		if(withdrawAmount == 0 || withdrawAmount % 50 != 0)
 		{
-			document.getElementById("msg").innerHTML="Please enter the amount which is multiple of 100";
+			document.getElementById("msg").innerHTML="Please enter the amount which is multiple of 100 & 50";
 			$("#msg").css("background-color","red");
 
 			return;
