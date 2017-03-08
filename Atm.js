@@ -42,7 +42,7 @@ function	Atm(){
 		var withdrawAmount2 = withdrawAmount;
 		var count = [this.twoK, this.fiveHundred,this.oneHundred,this.fifty];
 		var denomination = [2000,500,100,50];
-		if(withdrawAmount == 0 || withdrawAmount % 100 != 0)
+		if(withdrawAmount == 0 || withdrawAmount % 50 != 0)
 		{
 			document.getElementById("msg").innerHTML="Please enter the amount which is multiple of 100";
 			$("#msg").css("background-color","red");
@@ -203,7 +203,7 @@ function transact() {
 	$('#max').attr('disabled', true);
 
 	var obj = new Transaction(two,five,one,fifty);
-obj.amount = obj.computeTotalAmt();
+  obj.amount = obj.computeTotalAmt();
 	atmObj.add(obj)
 	atmObj.disp();
 	obj.update();
