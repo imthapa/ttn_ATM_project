@@ -167,20 +167,20 @@ function transact() {
     else{
         document.getElementById("msg").innerHTML="Denomination can't be negative";
         $("#msg").css("background-color","red");
-
         exit;
     }
+
+	if(one == 0 && two == 0 && five == 0){
+	  document.getElementById("msg").innerHTML="atleast one note should be entered";
+		$("#msg").css("background-color","red");
+		exit;
+		//return;
+	}
+
 	$('#money').attr('disabled', true);		//Validation added by Jitender
 	$('#max').attr('disabled', true);
 	var obj = new Transaction(two,five,one);
-
 	obj.amount = obj.computeTotalAmt();
-	//  console.log(obj);
-	if(one==0 && two==0 && five==0)//ankit
-	{
-	  alert("All cant be zero");
-		exit;
-	}
 	atmObj.add(obj)
 	atmObj.disp();
 	obj.update();
