@@ -9,6 +9,7 @@ function	Atm(){
 
 	this.add = function(transaction)
 	{
+
 		if(transaction.twoK > 0)
 		this.twoK = this.twoK + transaction.twoK;
 		if(transaction.fiveHundred > 0)
@@ -175,6 +176,11 @@ function transact() {
 
 	obj.amount = obj.computeTotalAmt();
 	//  console.log(obj);
+	if(one==0 && two==0 && five==0)//ankit
+	{
+	  alert("All cant be zero");
+		exit;
+	}
 	atmObj.add(obj)
 	atmObj.disp();
 	obj.update();
