@@ -47,9 +47,9 @@ function	Atm(){
 			return;
 		}
 
-		if(this.currentAmount <= withdrawAmount)    //cahnged
+		if(this.currentAmount < withdrawAmount)    //cahnged
 		{
-			document.getElementById("msg").innerHTML="ATM doesn't enough money";
+			document.getElementById("msg").innerHTML="ATM doesn't have enough money";
 			$("#msg").css("background-color","red");
 
 			return;
@@ -69,6 +69,11 @@ function	Atm(){
 					{
 						withdrawAmount -= noteCount * denomination[i];
 						count[i] =  count[i] - noteCount;
+					}
+					else
+					{
+						withdrawAmount-=count[i]*denomination[i];
+						count[i]=0;
 					}
 				}
 			}
@@ -174,13 +179,13 @@ function transact() {
 	  document.getElementById("msg").innerHTML="atleast one note should be entered";
 		$("#msg").css("background-color","red");
 		exit;
-		//return;
 	}
 
 	$('#money').attr('disabled', true);		//Validation added by Jitender
 	$('#max').attr('disabled', true);
 	var obj = new Transaction(two,five,one);
 	obj.amount = obj.computeTotalAmt();
+
 	atmObj.add(obj)
 	atmObj.disp();
 	obj.update();
