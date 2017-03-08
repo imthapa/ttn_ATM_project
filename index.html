@@ -61,7 +61,7 @@
           </table>
         </div>
       </div>
-      <form class="form-group form-inline" action="logs.html" method="post">
+      <form class="form-group form-inline">
           <label class="text-center"> Current Amount is : <label id = "curAmt"> ₹0 </label></label><br>
           <label class="text-center"> Max. limit </label>
           <input type="number" class="form-control" id = "max" name = "max" min = "0" placeholder="Default is 0" required/> <br>
@@ -95,7 +95,7 @@
                 <td><input type="number" id = "fifty" min = "0" style="width:100%" class="form-control"/></td>
               </tr>
             </table>
-            <input type="submit" id="logger" value = "View Log" class="btn btn-primary pull-left"/>
+            <input type="button" id="logger" value = "View Log" class="btn btn-primary pull-left" onclick="commingsoon()"/>
             <input type="button" id="money" value = "Add Money" class="btn btn-primary pull-right"onclick="transact()"/>
           </div>
       </form>

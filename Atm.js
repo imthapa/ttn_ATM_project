@@ -296,3 +296,6 @@ function showlogs() {
 	console.log("aaaaaaaaadfghjcvjbknlj;")
 }
 
+function commingsoon() {
+	alert("functionality comming soon");
+}
