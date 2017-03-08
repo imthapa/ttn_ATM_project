@@ -136,12 +136,39 @@ function transact() {
 
 	//.value is removed because null can also be there
 	var two = document.getElementById("two-thousand").value;
-	//alert(two);
-	//asr
+    if(two == '')  //akhil
+        two = 0;
+    else if(parseInt(two) > 0) {
+        two = parseInt(two);
+    }
+    else{
+        document.getElementById("msg").innerHTML="Denomination can't be negative";
+        $("#msg").css("background-color","red");
+        exit;
+    }
 	var five = document.getElementById("five-hundred").value;
-	//asr
+    if(five == '')    //akhil
+        five = 0;
+    else if(parseInt(five)>0) {
+        five = parseInt(five);
+    }
+    else{
+        document.getElementById("msg").innerHTML="Denomination can't be negative";
+        $("#msg").css("background-color","red");
+        exit;
+    }
 	var one = document.getElementById("one-hundred").value;
-	//asr
+    if(one == '')   //akhil
+        one = 0;
+    else if(parseInt(one)>0) {
+        one = parseInt(one);
+    }
+    else{
+        document.getElementById("msg").innerHTML="Denomination can't be negative";
+        $("#msg").css("background-color","red");
+
+        exit;
+    }
 	$('#money').attr('disabled', true);		//Validation added by Jitender
 	$('#max').attr('disabled', true);
 	var obj = new Transaction(two,five,one);
