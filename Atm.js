@@ -118,7 +118,7 @@ function Transaction(two,five,one,fifty) {
 	this.amount = 0;
 
 	this.computeTotalAmt = function(){
-		var totAmt = (this.twoK)*2000+(this.fiveHundred)*500+(this.oneHundred)*100;
+		var totAmt = (this.twoK)*2000+(this.fiveHundred)*500+(this.oneHundred)*100+(this.fifty)*50;
 		return totAmt;
 	}
 
@@ -136,7 +136,7 @@ function Transaction(two,five,one,fifty) {
 var max = 0;
 function transact() {
 	max = document.getElementById("max").value;
-	if(max == '' || parseInt(max) < 100){
+	if(max == '' || parseInt(max) < 50){
 		document.getElementById("msg").innerHTML="please enter max. amount user can get(should be greater than or equal to 100)";
 		$("#msg").css("background-color","red");
 
