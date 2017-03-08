@@ -149,10 +149,10 @@ function transact() {
 	var two = document.getElementById("two-thousand").value;
     if(two == '')  //akhil
         two = 0;
-    else if(parseInt(two) > 0) {
+    else if(parseInt(two) >= 0) {
         two = parseInt(two);
     }
-    else{
+    else {
         document.getElementById("msg").innerHTML="Denomination can't be negative";
         $("#msg").css("background-color","red");
         exit;
@@ -160,10 +160,10 @@ function transact() {
 	var five = document.getElementById("five-hundred").value;
     if(five == '')    //akhil
         five = 0;
-    else if(parseInt(five)>0) {
+    else if(parseInt(five)>= 0) {
         five = parseInt(five);
     }
-    else{
+    else {
         document.getElementById("msg").innerHTML="Denomination can't be negative";
         $("#msg").css("background-color","red");
         exit;
@@ -171,7 +171,7 @@ function transact() {
 	var one = document.getElementById("one-hundred").value;
     if(one == '')   //akhil
         one = 0;
-    else if(parseInt(one)>0) {
+    else if(parseInt(one)>= 0) {
         one = parseInt(one);
     }
     else{
@@ -182,10 +182,10 @@ function transact() {
 		var fifty = document.getElementById("fifty").value;
 	    if(fifty == '')    //akhil
 	        fifty = 0;
-	    else if(parseInt(fifty)>0) {
+	    else if(parseInt(fifty)>= 0) {
 	        fifty = parseInt(fifty);
 	    }
-	    else{
+	    else {
 	        document.getElementById("msg").innerHTML="Denomination can't be negative";
 	        $("#msg").css("background-color","red");
 	        exit;
@@ -214,24 +214,32 @@ function transact() {
 
 var withdrawalAmt = 0;
 function withdrawMoney(){
-	withdrawalAmt = parseInt(document.getElementById("usr").value);
-	if(withdrawalAmt < 0){
-		document.getElementById("msg").innerHTML="Please enter valid amount";
-		$("#msg").css("background-color","red");
+	withdrawalAmt = document.getElementById("usr").value;
+	if(withdrawalAmt==''){
+        withdrawalAmt=0;
+        document.getElementById("msg").innerHTML = "Cant be left blank";
+        $("#msg").css("background-color", "red");	}
 
-	}
-	else if(max >= withdrawalAmt){
-		atmObj.withdraw(withdrawalAmt);
-		atmObj.disp();
-	}
 	else {
-		$("#msg").css("background-color","red");
-		// if(max == 0)
-		// 	document.getElementById("msg").innerHTML="ATM doesn't have cash";
-		// else {
-		document.getElementById("msg").innerHTML="Withdrawl Amount is greater than limit defined";
-		//}
-	}
+			withdrawalAmt=parseInt(withdrawalAmt);
+        if (withdrawalAmt <= 0) {
+            document.getElementById("msg").innerHTML = "Please enter valid amount";
+            $("#msg").css("background-color", "red");
+
+        }
+        else if (max >= withdrawalAmt) {
+            atmObj.withdraw(withdrawalAmt);
+            atmObj.disp();
+        }
+        else {
+            $("#msg").css("background-color", "red");
+            // if(max == 0)
+            // 	document.getElementById("msg").innerHTML="ATM doesn't have cash";
+            // else {
+            document.getElementById("msg").innerHTML = "Withdrawl Amount is greater than limit defined";
+            //}
+        }
+    }
 }
 //submit and onclick() together not working
 //so did this
