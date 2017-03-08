@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="Atm.js"></script>
+  <!-- <script src="index.js"></script> -->
+  <!-- <script src="transaction.js"></script> -->
+
+  <style>
+
+
+
+
+  </style>
+
+</head>
+<body>
+
+  <!-- <div>
+  <img src = "tothenew.png" class="img-rounded">
+  <label class="text-center"><h1>Project ATM</h1></label>
+</div> -->
+<div class="container">
+  <div class="panel-heading">
+    <img src = "tothenew.png" class="img-rounded" height=100px>
+    <label class="text-center"><h2>Project ATM</h2></label>
+  </div>
+  <div class="panel-body">
+    <div class="admin col-sm-7 vertical">
+      <!-- <div class="container">  -->
+      <h3 class="text-center ">Transaction Logs</h3>
+      <div class="row clearfix">
+        <div class="col-md-12 column">
+          <table class="table table-bordered" id="tab_logic">
+            <thead>
+              <tr >
+                <th class="text-center">
+                  #
+                </th>
+                <th class="text-center">
+                  Transaction
+                </th>
+                <th class="text-center">
+                  ₹2000
+                </th>
+                <th class="text-center">
+                  ₹500
+                </th>
+                <th class="text-center">
+                  ₹100
+                </th>
+                <th class="text-center">
+                  Amount left
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr id='addr0'>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <form class="form-group form-inline">
+          <label class="text-center"> Current Amount is : <label id = "curAmt"> ₹0 </label></label><br>
+          <label class="text-center"> Max. limit </label>
+          <input type="number" class="form-control" id = "max" name = "max" min = "0" required/> <br>
+          <br>
+          <div class="add-money">
+            <table class="table table-bordered table-hover" id="bank_adder">
+              <thead>
+                <tr >
+                  <th class="text-center">
+                    Currency
+                  </th>
+                  <th class="text-center">
+                    Denomination
+                  </th>
+                </tr>
+              </thead>
+              <tr>
+                <td class = "text-center">₹2000</td>
+                <td><input type="number" id ="two-thousand"  min = "0" style="width:100%" class="form-control" /></td>
+              </tr>
+              <tr>
+                <td class = "text-center">₹500</td>
+                <td><input type="number" id = "five-hundred" min = "0" style="width:100%" class="form-control"/></td>
+              </tr>
+              <tr>
+                <td class = "text-center">₹100</td>
+                <td><input type="number" id = "one-hundred" min = "0" style="width:100%" class="form-control"/></td>
+              </tr>
+            </table>
+          <a href="logs.html">  <input type="button" id="money" value = "View Log" class="btn btn-primary pull-left"/></a>
+            <input type="button" id="money" value = "Add Money" class="btn btn-primary pull-right"onclick="transact()"/>
+          </div>
+      </form>
+    </div>
+    <div class="withdrawal col-sm-5 vertical" >
+      <h3 class="text-center">Customer View</h3>
+      <div class="form-group">
+        <label for="name">Enter your name:</label>
+        <input type="text" class="form-control" id="userName" placeholder="enter your name"><br>
+        <label for="usr">Enter Amount:</label>
+        <input type="number" class="form-control" min = "0" id="usr"><br>
+        <input type="button" id = "wi" value = "Withdrawl" class="btn btn-primary pull-right" onclick="withdrawMoney()"/>
+      </div>
+      <br><br>
+      <div id = "msg" style="color:white;padding:10px;text-size:15px" class="text-center"> </div>
+    </div>
+  </div>
+  <div class="panel-footer text-center">Copyright &copy; To The New</div>
+</div>
+
+</body>
+</html>
