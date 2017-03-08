@@ -32,3 +32,11 @@
     overflow: hidden;
     height: 450px;
 }*/
+
+.form-control{
+  widows: 100%;
+}
+
+#downloadlink{
+  display: none;
+}
