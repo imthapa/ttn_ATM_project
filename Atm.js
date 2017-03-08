@@ -142,7 +142,8 @@ function transact() {
 	//asr
 	var one = document.getElementById("one-hundred").value;
 	//asr
-	//jitr
+	$('#money').attr('disabled', true);		//Validation added by Jitender
+	$('#max').attr('disabled', true);
 	var obj = new Transaction(two,five,one);
 
 	obj.amount = obj.computeTotalAmt();
